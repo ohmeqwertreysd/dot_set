@@ -38,6 +38,7 @@ bool operator==(const sf::VertexArray& left, const sf::VertexArray& right);
 
 bool isCollinear(const ds::Pair<sf::Vector2f, sf::Vector2f>& ab, const ds::Pair<sf::Vector2f, sf::Vector2f>& cd);
 bool isOrthogonal(const ds::Pair<sf::Vector2f, sf::Vector2f>& ab, const ds::Pair<sf::Vector2f, sf::Vector2f>& cd);
+bool isCorrectDot(const sf::Vector2f& a);
 sf::Vector2f get_vector_between_two_point(const sf::Vector2f& a, const sf::Vector2f& b);
 float distance_between_two_point(const sf::Vector2f& a, const sf::Vector2f& b);
 sf::Vector2f get_position_circle(const sf::Vector2f& point);

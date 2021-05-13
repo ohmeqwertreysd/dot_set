@@ -66,6 +66,13 @@ bool isOrthogonal(const ds::Pair<sf::Vector2f, sf::Vector2f>& ab, const ds::Pair
     return floatw{ vector_AB.x * vector_CD.x + vector_AB.y * vector_CD.y } == floatw{ 0.0 };
 }
 
+bool isCorrectDot(const sf::Vector2f& a)
+{
+    if ((a.x < 15 || a.x>1005) || (a.y < 15 || a.y>705))
+        return false;
+    return true;
+}
+
 ds::List<sf::VertexArray>* Window::search_square(hashtable* ht, ds::List<floatw>* dists)
 {
 
@@ -196,6 +203,7 @@ void Window::logic()
 
     if (ImGui::Button("Generate Points from File"))
         dots_textbox = file_to_textbox();
+
     if (ImGui::Button("Save Points to File"))
         dots_to_file();
 
@@ -289,6 +297,8 @@ void Window::textbox_to_dots()
         sf::Vector2f dot;
         char del;
         points >> dot.x >> del >> dot.y;
+        if (!isCorrectDot(dot))
+            continue;
         dots->push_back(dot);
     }
     dots_amount = dots->size();
@@ -312,6 +322,8 @@ std::string Window::file_to_textbox()
             sf::Vector2f dot;
             char del;
             points >> dot.x >> del >> dot.y;
+            if (!isCorrectDot(dot))
+                continue;
             dots->push_back(dot);
         }
     }
